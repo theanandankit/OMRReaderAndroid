@@ -2,7 +2,7 @@ package com.Project.OMRReader.Models.RetrofitModels;
 
 public class ResponseStatus {
 
-    private String status;
+    String status;
 
     public String getStatus() {
         return status;

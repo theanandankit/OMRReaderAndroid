@@ -10,7 +10,7 @@ import retrofit2.http.POST;
 
 public interface RetrofitInterface {
 
-    @POST("AdminLogin")
+    @POST("Adminlogin/")
     @FormUrlEncoded
     Call<ResponseStatus> adminLogin(@Field("username") String username,@Field("password") String password);
 }
