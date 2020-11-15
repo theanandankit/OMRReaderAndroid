@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,29 +25,32 @@ public class QuizsAdminFragment extends Fragment implements QuizAllInterface {
 
     RecyclerView recyclerView;
     QuizAdminListAdapter quizAdminListAdapter;
+    ProgressBar progressBar;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.quiz_admin_fragment,container,false);
         init(view);
-        setRecyclerView(view);
         QuizAllImpl quizAll = new QuizAllImpl(this);
         quizAll.get();
         return view;
     }
     private void init(View view){
         recyclerView = view.findViewById(R.id.recycleView);
+        progressBar = view.findViewById(R.id.progress);
+        progressBar.setVisibility(View.VISIBLE);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
-    private void setRecyclerView(View view){
-        quizAdminListAdapter = new QuizAdminListAdapter(getContext());
+    private void setRecyclerView(ArrayList<QuizResponse> responses){
+        quizAdminListAdapter = new QuizAdminListAdapter(getContext(),responses);
         recyclerView.setAdapter(quizAdminListAdapter);
     }
 
     @Override
     public void response(ArrayList<QuizResponse> response) {
-
+        progressBar.setVisibility(View.GONE);
+        setRecyclerView(response);
     }
 }

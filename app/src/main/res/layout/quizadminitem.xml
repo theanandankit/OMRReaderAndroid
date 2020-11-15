@@ -134,7 +134,7 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/paid_by"
+                android:id="@+id/type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

@@ -14,6 +14,26 @@ public class QuizResponse {
 
     String description;
 
+    String topic;
+
+    String initiatedBy;
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public String getInitiatedBy() {
+        return initiatedBy;
+    }
+
+    public void setInitiatedBy(String initiatedBy) {
+        this.initiatedBy = initiatedBy;
+    }
+
     public String getId() {
         return id;
     }
