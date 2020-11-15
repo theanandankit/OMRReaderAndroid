@@ -1,6 +1,9 @@
 package com.Project.OMRReader.Services;
 
+import com.Project.OMRReader.Models.RetrofitModels.QuizResponse;
 import com.Project.OMRReader.Models.RetrofitModels.ResponseStatus;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -13,4 +16,7 @@ public interface RetrofitInterface {
     @POST("Adminlogin/")
     @FormUrlEncoded
     Call<ResponseStatus> adminLogin(@Field("username") String username,@Field("password") String password);
+
+    @GET("allQuizInfo/")
+    Call<ArrayList<QuizResponse>> getAllQuiz();
 }
