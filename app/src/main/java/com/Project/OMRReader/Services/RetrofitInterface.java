@@ -1,5 +1,6 @@
 package com.Project.OMRReader.Services;
 
+import com.Project.OMRReader.Models.RetrofitModels.AdminHomeResponse;
 import com.Project.OMRReader.Models.RetrofitModels.QuizResponse;
 import com.Project.OMRReader.Models.RetrofitModels.ResponseStatus;
 
@@ -19,4 +20,7 @@ public interface RetrofitInterface {
 
     @GET("allQuizInfo/")
     Call<ArrayList<QuizResponse>> getAllQuiz();
+
+    @GET("adminHomeInfo/")
+    Call<AdminHomeResponse> adminHomeInfo();
 }

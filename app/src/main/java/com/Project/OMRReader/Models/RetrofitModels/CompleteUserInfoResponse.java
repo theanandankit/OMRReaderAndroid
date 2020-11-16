@@ -4,7 +4,7 @@ public class CompleteUserInfoResponse {
 
     String about;
 
-    Integer contactNo;
+    String contactNo;
 
     String address;
 
@@ -20,11 +20,11 @@ public class CompleteUserInfoResponse {
         this.about = about;
     }
 
-    public Integer getContactNo() {
+    public String  getContactNo() {
         return contactNo;
     }
 
-    public void setContactNo(Integer contactNo) {
+    public void setContactNo(String contactNo) {
         this.contactNo = contactNo;
     }
 

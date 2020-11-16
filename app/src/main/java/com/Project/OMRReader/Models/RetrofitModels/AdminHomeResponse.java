@@ -41,4 +41,14 @@ public class AdminHomeResponse {
     public void setGainer(CompleteUserInfoResponse gainer) {
         this.gainer = gainer;
     }
+
+    @Override
+    public String toString() {
+        return "AdminHomeResponse{" +
+                "totalStudent=" + totalStudent +
+                ", totalQuiz=" + totalQuiz +
+                ", lastQuiz=" + lastQuiz +
+                ", gainer=" + gainer +
+                '}';
+    }
 }
