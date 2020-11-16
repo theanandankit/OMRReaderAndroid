@@ -1,6 +1,7 @@
 package com.Project.OMRReader.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.Project.OMRReader.Activity.QuizDetailsScreen;
 import com.Project.OMRReader.Models.RetrofitModels.QuizResponse;
 import com.Project.OMRReader.R;
 
@@ -42,6 +44,13 @@ public class QuizAdminListAdapter extends RecyclerView.Adapter<QuizAdminListAdap
             holder.type.setText("Multiple Correct");
         }
         holder.total.setText("21");
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                context.startActivity(new Intent(context, QuizDetailsScreen.class));
+            }
+        });
     }
 
     @Override

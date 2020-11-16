@@ -206,7 +206,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/yard_profile_logout_layout"
+                android:id="@+id/logout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
