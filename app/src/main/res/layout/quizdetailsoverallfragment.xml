@@ -43,7 +43,7 @@
 
 
                     <TextView
-                        android:id="@+id/quiz"
+                        android:id="@+id/student_total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -73,7 +73,7 @@
 
 
                     <TextView
-                        android:id="@+id/student"
+                        android:id="@+id/average"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -397,6 +397,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:id="@+id/totalQuestion"
                         android:layout_marginLeft="10dp"
                         android:fontFamily="@font/open_sans"
                         android:text="10"
@@ -418,6 +419,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans"
                         android:text="Type"
+                        android:id="@+id/type"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
@@ -446,11 +448,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans"
-                        android:text="Highest marks"
+                        android:text="Date"
                         android:textColor="@color/black" />
 
                     <TextView
-                        android:id="@+id/lastType"
+                        android:id="@+id/high"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -478,7 +480,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
-                        android:id="@+id/lastInitiated"
+                        android:id="@+id/initiated"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

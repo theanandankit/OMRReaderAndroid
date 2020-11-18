@@ -10,6 +10,16 @@ public class CompleteUserInfoResponse {
 
     String batch;
 
+    String rollno;
+
+    public String getRollno() {
+        return rollno;
+    }
+
+    public void setRollno(String rollno) {
+        this.rollno = rollno;
+    }
+
     UserInfoResponse user_info;
 
     public String getAbout() {
