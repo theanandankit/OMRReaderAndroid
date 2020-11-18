@@ -28,4 +28,8 @@ public interface RetrofitInterface {
 
     @GET("adminHomeInfo/")
     Call<AdminHomeResponse> adminHomeInfo();
+
+    @POST("createQuiz/")
+    @FormUrlEncoded
+    Call<ResponseStatus> createQuiz(@Field("answer") String answer,@Field("answerType") String answerType,@Field("negative") boolean negative,@Field("description") String description,@Field("topic") String topic,@Field("initiatedBy") String initiatedBy);
 }
