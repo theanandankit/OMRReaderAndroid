@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.StudentHomeFragment"
+    android:orientation="vertical"
+    android:weightSum="100">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:text="Last Quiz Analysis"
+        android:textAlignment="center"
+        android:textSize="20dp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="80"
+        android:layout_below="@+id/admin_name"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</LinearLayout>
