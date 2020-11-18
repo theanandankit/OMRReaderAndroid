@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.Project.OMRReader.Fragments.HomeAdminFragment;
 import com.Project.OMRReader.Fragments.ProfileAdminFragment;
-import com.Project.OMRReader.Fragments.QuizsAdminFragment;
+import com.Project.OMRReader.Fragments.QuizAdminFragment;
 import com.Project.OMRReader.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -47,7 +47,7 @@ public class AdminHomeScreen extends AppCompatActivity {
                         break;
                     case R.id.quiz:
                         title.setText("Quiz");
-                        selectFragment = new QuizsAdminFragment();
+                        selectFragment = new QuizAdminFragment();
                         break;
                     case R.id.profile:
                         title.setText("Profile");
