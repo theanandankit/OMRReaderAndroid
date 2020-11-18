@@ -5,6 +5,7 @@ import com.Project.OMRReader.Models.RetrofitModels.QuizHomeResponse;
 import com.Project.OMRReader.Models.RetrofitModels.QuizResponse;
 import com.Project.OMRReader.Models.RetrofitModels.ResponseStatus;
 import com.Project.OMRReader.Models.RetrofitModels.StudentQuizListResponse;
+import com.Project.OMRReader.Models.RetrofitModels.StudentInfoResponse;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,10 @@ public interface RetrofitInterface {
     @POST("Adminlogin/")
     @FormUrlEncoded
     Call<ResponseStatus> adminLogin(@Field("username") String username,@Field("password") String password);
+
+    @POST("login/")
+    @FormUrlEncoded
+    Call<StudentInfoResponse> studentLogin(@Field("email") String email, @Field("password") String password );
 
     @GET("allQuizInfo/")
     Call<ArrayList<QuizResponse>> getAllQuiz();
