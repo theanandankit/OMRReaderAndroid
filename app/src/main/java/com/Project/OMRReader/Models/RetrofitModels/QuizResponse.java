@@ -1,6 +1,9 @@
 package com.Project.OMRReader.Models.RetrofitModels;
 
-public class QuizResponse {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class QuizResponse implements Parcelable {
 
     String id;
 
@@ -17,6 +20,29 @@ public class QuizResponse {
     String topic;
 
     String initiatedBy;
+
+    protected QuizResponse(Parcel in) {
+        id = in.readString();
+        date = in.readString();
+        answer = in.readString();
+        answerType = in.readString();
+        negative = in.readByte() != 0;
+        description = in.readString();
+        topic = in.readString();
+        initiatedBy = in.readString();
+    }
+
+    public static final Creator<QuizResponse> CREATOR = new Creator<QuizResponse>() {
+        @Override
+        public QuizResponse createFromParcel(Parcel in) {
+            return new QuizResponse(in);
+        }
+
+        @Override
+        public QuizResponse[] newArray(int size) {
+            return new QuizResponse[size];
+        }
+    };
 
     public String getTopic() {
         return topic;
@@ -80,5 +106,22 @@ public class QuizResponse {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(id);
+        parcel.writeString(date);
+        parcel.writeString(answer);
+        parcel.writeString(answerType);
+        parcel.writeByte((byte) (negative ? 1 : 0));
+        parcel.writeString(description);
+        parcel.writeString(topic);
+        parcel.writeString(initiatedBy);
     }
 }
