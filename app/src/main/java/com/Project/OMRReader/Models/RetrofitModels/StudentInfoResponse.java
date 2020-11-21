@@ -3,9 +3,9 @@ package com.Project.OMRReader.Models.RetrofitModels;
 import com.google.gson.annotations.SerializedName;
 
 public class StudentInfoResponse {
-    @SerializedName("token")
+    @SerializedName("Token")
     private String token;
-    @SerializedName("id")
+    @SerializedName("Id")
     private int id;
 
     public void setToken(String token){ this.token=token; }

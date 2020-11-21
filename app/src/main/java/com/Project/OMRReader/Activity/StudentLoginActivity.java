@@ -67,6 +67,7 @@ public class StudentLoginActivity extends AppCompatActivity {
                       Toast.makeText(getApplicationContext(),"Login Successful", Toast.LENGTH_LONG);
                       Intent i  = new Intent(StudentLoginActivity.this, StudentHomeScreenActivity.class);
 
+
                       i.putExtra("token",response.body().getToken());
                       i.putExtra("id",response.body().getId());
                       startActivity(i);

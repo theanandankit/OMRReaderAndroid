@@ -56,7 +56,9 @@
                         android:text="Maths"
                         android:textColor="@color/white"
                         android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:layout_alignParentLeft="true"
+                        android:paddingLeft="10dp" />
 
                 </RelativeLayout>
 
@@ -101,7 +103,7 @@
                             android:textSize="15sp" />
 
                         <TextView
-                            android:id="@+id/topName"
+                            android:id="@+id/student_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -125,11 +127,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/open_sans"
-                            android:text="Batch"
+                            android:text="Enrollment Number"
                             android:textColor="@color/black" />
 
                         <TextView
-                            android:id="@+id/topBatch"
+                            android:id="@+id/student_enrollment_number"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -184,11 +186,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/open_sans"
-                                android:text="Accuracy"
+                                android:text="Correct Answer"
                                 android:textColor="@color/black" />
 
                             <TextView
-                                android:id="@+id/topAccuracy"
+                                android:id="@+id/correct_answer"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -209,17 +211,17 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/open_sans"
-                                android:text="Growth:"
+                                android:text="Incorrect Answer"
                                 android:textColor="@color/black" />
 
                             <TextView
+                                android:id="@+id/incorrect_answer"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginLeft="10dp"
                                 android:fontFamily="@font/open_sans"
-                                android:text="10 %"
-                                android:textSize="14sp" />
+                                android:text="Fetching ..." />
 
                         </LinearLayout>
 
@@ -233,17 +235,17 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/open_sans"
-                                android:text="Negative"
+                                android:text="Total Marks"
                                 android:textColor="@color/black" />
 
                             <TextView
+                                android:id="@+id/total_marks"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginLeft="10dp"
                                 android:fontFamily="@font/open_sans"
-                                android:text="5.4 %"
-                                android:textSize="14sp" />
+                                android:text="Fetching ..." />
 
                         </LinearLayout>
 
@@ -254,6 +256,22 @@
 
             </RelativeLayout>
 
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barChart"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="5dp">
+
+            </com.github.mikephil.charting.charts.BarChart>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Overall Summary of Subject"
+                android:textColor="@color/black"
+                android:gravity="center_horizontal"
+                android:layout_margin="5dp"/>
         </LinearLayout>
 
 

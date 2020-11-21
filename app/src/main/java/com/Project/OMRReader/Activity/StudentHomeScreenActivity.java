@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -16,12 +17,19 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class StudentHomeScreenActivity extends AppCompatActivity {
     BottomNavigationView studentBottomNavigationView;
     TextView title;
+    private StudentHomeFragment studentHomeFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_home_screen);
-
+        Bundle loginData= getIntent().getExtras();
+        int studentId= loginData.getInt("id");
+        Log.d("ID from login activity",Integer.toString(studentId));
+        Bundle bundle_id= new Bundle();
+        bundle_id.putInt("id",studentId);
+        studentHomeFragment=new StudentHomeFragment();
+        studentHomeFragment.setArguments(bundle_id);
         getViews();
         setDefault();
         studentBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -32,11 +40,11 @@ public class StudentHomeScreenActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.student_home:
                         title.setText("Home");
-                        selectedFragment=new StudentHomeFragment();
+                        selectedFragment=studentHomeFragment;
                         break;
                     case R.id.student_leaderboard:
                         title.setText("Leaderboard");
-                        selectedFragment=new StudentHomeFragment();
+                        selectedFragment=studentHomeFragment;
                         break;
                 }
 
@@ -57,7 +65,7 @@ public class StudentHomeScreenActivity extends AppCompatActivity {
     }
     private void setDefault()
     {
-     getSupportFragmentManager().beginTransaction().add(R.id.student_screen_frame, new StudentHomeFragment()).commit();
+     getSupportFragmentManager().beginTransaction().add(R.id.student_screen_frame, studentHomeFragment).commit();
     }
 
 
