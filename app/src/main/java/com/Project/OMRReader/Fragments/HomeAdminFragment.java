@@ -35,6 +35,7 @@ public class HomeAdminFragment extends Fragment implements AdminHomeInfoInterfac
     AdminHomeInfoImpl adminHomeInfo;
     LineChart totalQuizChart,totalStudentChart;
     PieChart pieChart;
+
     int[] color = new int[]{Color.GREEN,Color.RED};
 
     @Nullable

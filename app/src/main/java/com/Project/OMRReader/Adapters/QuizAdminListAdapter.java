@@ -34,8 +34,9 @@ public class QuizAdminListAdapter extends RecyclerView.Adapter<QuizAdminListAdap
         return new quizholder(view);
     }
 
+
     @Override
-    public void onBindViewHolder(@NonNull QuizAdminListAdapter.quizholder holder, int position) {
+    public void onBindViewHolder(@NonNull QuizAdminListAdapter.quizholder holder, final int position) {
         holder.id.setText(responses.get(position).getId());
         holder.date.setText(responses.get(position).getDate());
         if (responses.get(position).isNegative()) {
@@ -48,10 +49,15 @@ public class QuizAdminListAdapter extends RecyclerView.Adapter<QuizAdminListAdap
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.startActivity(new Intent(context, QuizDetailsScreen.class));
+                //context.startActivity(new Intent(context, QuizDetailsScreen.class));
+                Intent quizDetailIntent = new Intent(context,QuizDetailsScreen.class);
+                quizDetailIntent.putExtra("data",responses.get(position));
+                context.startActivity(quizDetailIntent);
             }
         });
     }
+
+
 
     @Override
     public int getItemCount() {

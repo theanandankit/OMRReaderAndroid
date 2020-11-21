@@ -69,5 +69,6 @@ public class QuizAdminFragment extends Fragment implements QuizAllInterface {
     public void response(ArrayList<QuizResponse> response) {
         progressBar.setVisibility(View.GONE);
         setRecyclerView(response);
+        recyclerView.setClickable(true);
     }
 }
