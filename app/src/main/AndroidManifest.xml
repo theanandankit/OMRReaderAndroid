@@ -30,18 +30,13 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
 
         <activity android:name=".Activity.StudentHomeScreenActivity">
 
         </activity>
         <activity android:name=".Activity.StudentLoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".Activity.NewQuizDetailsScreen"></activity>
@@ -49,8 +44,11 @@
         </activity>
         <activity android:name=".Activity.QuizDetailsScreen" />
         <activity android:name=".Activity.AdminHomeScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Activity.loginActivity" />
         <activity android:name=".MainActivity" />

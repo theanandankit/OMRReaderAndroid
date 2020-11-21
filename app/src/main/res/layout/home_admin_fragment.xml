@@ -38,7 +38,8 @@
                     android:text="Growth statistics"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_alignParentLeft="true" />
 
 
                 <LinearLayout

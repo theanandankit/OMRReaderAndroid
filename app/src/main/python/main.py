@@ -7,7 +7,7 @@ import io
 import PIL.Image as Image
 
 def startScanning(data):
-    path ="/storage/emulated/0/Android/data/com.example.omrscanning_app/files/Pictures/omrfilled" + str(data%3+1) + ".jpg"
+    path ="/storage/emulated/0/Android/data/com.Project.OMRReader/files/Pictures/omrfilled" + str(data%2+1) + ".jpg"
     width = 800
     height = 950
     questions = 5

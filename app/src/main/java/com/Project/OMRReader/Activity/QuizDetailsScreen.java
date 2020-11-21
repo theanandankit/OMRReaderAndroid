@@ -58,8 +58,10 @@ public class QuizDetailsScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_details_screen);
-        init();
-        setAdapter();
+//        init();
+//        setAdapter();
+        fab = findViewById(R.id.fab);
+        relativelay = findViewById(R.id.relativelay);
 
         fileNumber=0;
 
@@ -146,7 +148,7 @@ public class QuizDetailsScreen extends AppCompatActivity {
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 
-            PyObject obj = pyobj.callAttr("startScanning", currentPhotoPath);
+            PyObject obj = pyobj.callAttr("startScanning", fileNumber);
             fileNumber++;
             Log.d(TAG, "onActivityResult: "+ obj.toString());
 
@@ -190,16 +192,16 @@ public class QuizDetailsScreen extends AppCompatActivity {
 
     }
 
-    private void init() {
-        fab = findViewById(R.id.fab);
-        tabLayout = findViewById(R.id.tabLayout);
-        viewPager = findViewById(R.id.viewpager);
-        relativelay = findViewById(R.id.relativelay);
-        adapter = new QuizDetailsTabLayoutAdapter(getSupportFragmentManager());
-    }
-
-    private void setAdapter() {
-        viewPager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewPager);
-    }
+//    private void init() {
+//        fab = findViewById(R.id.fab);
+//        tabLayout = findViewById(R.id.tabLayout);
+//        viewPager = findViewById(R.id.viewpager);
+//        relativelay = findViewById(R.id.relativelay);
+//        adapter = new QuizDetailsTabLayoutAdapter(getSupportFragmentManager());
+//    }
+//
+//    private void setAdapter() {
+//        viewPager.setAdapter(adapter);
+//        tabLayout.setupWithViewPager(viewPager);
+//    }
 }
