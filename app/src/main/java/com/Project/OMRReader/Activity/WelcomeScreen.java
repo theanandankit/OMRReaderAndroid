@@ -37,11 +37,11 @@ public class WelcomeScreen extends AppCompatActivity {
     }
 
     public void openLoginTeacher(){
-        Intent intent=new Intent(this,loginActivity.class);
+        Intent intent=new Intent(WelcomeScreen.this,loginActivity.class);
         startActivity(intent);
     }
     public void openLoginStudent(){
-        Intent intent=new Intent(this,StudentLoginActivity.class);
+        Intent intent=new Intent(WelcomeScreen.this,StudentLoginActivity.class);
         startActivity(intent);
     }
 
