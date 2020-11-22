@@ -150,7 +150,8 @@ public class QuizDetailsScreen extends AppCompatActivity {
 
             PyObject obj = pyobj.callAttr("startScanning", fileNumber);
             fileNumber++;
-            Log.d(TAG, "onActivityResult: "+ obj.toString());
+            Log.d(TAG, "onActivityResult: "+ obj.toString()
+            );
 
             File fdelete = new File(currentPhotoPath);
             if (fdelete.exists()) {
