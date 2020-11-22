@@ -3,6 +3,8 @@ package com.Project.OMRReader.Models.RetrofitModels;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 public class QuizResponse implements Parcelable {
 
     String id;
@@ -123,5 +125,12 @@ public class QuizResponse implements Parcelable {
         parcel.writeString(description);
         parcel.writeString(topic);
         parcel.writeString(initiatedBy);
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return super.toString();
+
     }
 }
