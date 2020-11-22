@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.Project.OMRReader.Fragments.StudentHomeFragment;
+import com.Project.OMRReader.Fragments.StudentLeaderboardFragment;
 import com.Project.OMRReader.R;
 import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -18,6 +19,7 @@ public class StudentHomeScreenActivity extends AppCompatActivity {
     BottomNavigationView studentBottomNavigationView;
     TextView title;
     private StudentHomeFragment studentHomeFragment;
+    private StudentLeaderboardFragment studentLeaderboard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class StudentHomeScreenActivity extends AppCompatActivity {
         Bundle bundle_id= new Bundle();
         bundle_id.putInt("id",studentId);
         studentHomeFragment=new StudentHomeFragment();
+        studentLeaderboard=new StudentLeaderboardFragment();
         studentHomeFragment.setArguments(bundle_id);
         getViews();
         setDefault();
@@ -44,7 +47,7 @@ public class StudentHomeScreenActivity extends AppCompatActivity {
                         break;
                     case R.id.student_leaderboard:
                         title.setText("Leaderboard");
-                        selectedFragment=studentHomeFragment;
+                        selectedFragment=studentLeaderboard;
                         break;
                 }
 

@@ -225,15 +225,13 @@ public class QuizDetailsScreen extends AppCompatActivity {
     protected void displayEvalutionResult(int enrollmentNumber,int totalMarks){
         LayoutInflater inflater = getLayoutInflater();
         View view= inflater.inflate(R.layout.quiz_evaluation_display,  mainList ,false);
-
-
         ImageView image= view.findViewById(R.id.answer_sheet);
         TextView textEnrollment = view.findViewById(R.id.student_enrollment_number);
         TextView totalMarksView= view.findViewById(R.id.Total_Marks);
         pieChart = view.findViewById(R.id.pieChart);
         setPieChart();
 
-
+        // image.setImage();
         textEnrollment.setText(Integer.toString(enrollmentNumber));
         totalMarksView.setText(Integer.toString(totalMarks));
         mainList.addView(view);
