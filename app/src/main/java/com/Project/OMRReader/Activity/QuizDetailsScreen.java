@@ -21,6 +21,7 @@ import android.widget.RelativeLayout;
 
 import com.Project.OMRReader.Adapters.QuizDetailsTabLayoutAdapter;
 import com.Project.OMRReader.MainActivity;
+import com.Project.OMRReader.Models.RetrofitModels.QuizResponse;
 import com.Project.OMRReader.R;
 import com.chaquo.python.PyObject;
 import com.chaquo.python.Python;
@@ -42,6 +43,9 @@ public class QuizDetailsScreen extends AppCompatActivity {
     FloatingActionButton fab;
     RelativeLayout relativelay;
 
+    QuizResponse response;
+
+
     private int fileNumber;
 
 
@@ -62,6 +66,11 @@ public class QuizDetailsScreen extends AppCompatActivity {
 //        setAdapter();
         fab = findViewById(R.id.fab);
         relativelay = findViewById(R.id.relativelay);
+
+        Intent dataIntent = getIntent();
+        response=dataIntent.getParcelableExtra("data");
+
+        Log.d(TAG, "onCreate: "+ response.toString());
 
         fileNumber=0;
 
@@ -150,8 +159,10 @@ public class QuizDetailsScreen extends AppCompatActivity {
 
             PyObject obj = pyobj.callAttr("startScanning", fileNumber);
             fileNumber++;
-            Log.d(TAG, "onActivityResult: "+ obj.toString()
-            );
+
+
+            Log.d(TAG, "onActivityResult: "+ obj.toString());
+
 
             File fdelete = new File(currentPhotoPath);
             if (fdelete.exists()) {
