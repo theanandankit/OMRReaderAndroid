@@ -10,22 +10,33 @@ import androidx.viewpager.widget.ViewPager;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.Project.OMRReader.Adapters.QuizDetailsTabLayoutAdapter;
 import com.Project.OMRReader.MainActivity;
+import com.Project.OMRReader.Models.QuizEvaluationModelView;
 import com.Project.OMRReader.Models.RetrofitModels.QuizResponse;
 import com.Project.OMRReader.R;
 import com.chaquo.python.PyObject;
 import com.chaquo.python.Python;
 import com.chaquo.python.android.AndroidPlatform;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
@@ -33,6 +44,7 @@ import com.google.android.material.tabs.TabLayout;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class QuizDetailsScreen extends AppCompatActivity {
@@ -42,15 +54,18 @@ public class QuizDetailsScreen extends AppCompatActivity {
     QuizDetailsTabLayoutAdapter adapter;
     FloatingActionButton fab;
     RelativeLayout relativelay;
-
+    ArrayList<QuizEvaluationModelView> results;
+   LinearLayout mainList;
     QuizResponse response;
+    PieChart pieChart;
+    int[] color = new int[]{Color.GREEN,Color.RED};
 
 
     private int fileNumber;
 
 
     private static final int CAMERA_REQUESTCODE = 1;
-    private static final String TAG="QuizDetailsSrceen";
+    private static final String TAG="QuizDetailsScreen";
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -66,11 +81,13 @@ public class QuizDetailsScreen extends AppCompatActivity {
 //        setAdapter();
         fab = findViewById(R.id.fab);
         relativelay = findViewById(R.id.relativelay);
+        mainList= findViewById(R.id.quiz_evaluation_list);
 
         Intent dataIntent = getIntent();
         response=dataIntent.getParcelableExtra("data");
+        results=new ArrayList<QuizEvaluationModelView>();
 
-        Log.d(TAG, "onCreate: "+ response.toString());
+        Log.v( "Response ", response.toString()+"HELLO ");
 
         fileNumber=0;
 
@@ -163,6 +180,8 @@ public class QuizDetailsScreen extends AppCompatActivity {
 
             Log.d(TAG, "onActivityResult: "+ obj.toString());
 
+            displayEvalutionResult(122211,80);
+
 
             File fdelete = new File(currentPhotoPath);
             if (fdelete.exists()) {
@@ -202,6 +221,44 @@ public class QuizDetailsScreen extends AppCompatActivity {
         }
 
 
+    }
+    protected void displayEvalutionResult(int enrollmentNumber,int totalMarks){
+        LayoutInflater inflater = getLayoutInflater();
+        View view= inflater.inflate(R.layout.quiz_evaluation_display,  mainList ,false);
+
+
+        ImageView image= view.findViewById(R.id.answer_sheet);
+        TextView textEnrollment = view.findViewById(R.id.student_enrollment_number);
+        TextView totalMarksView= view.findViewById(R.id.Total_Marks);
+        pieChart = view.findViewById(R.id.pieChart);
+        setPieChart();
+
+
+        textEnrollment.setText(Integer.toString(enrollmentNumber));
+        totalMarksView.setText(Integer.toString(totalMarks));
+        mainList.addView(view);
+
+
+    }
+    private void setPieChart(){
+        PieDataSet pieDataSet = new PieDataSet(pieData(),"");
+        pieDataSet.setColors(color);
+
+        PieData pieData = new PieData(pieDataSet);
+
+        pieChart.setDrawEntryLabels(true);
+        pieChart.setUsePercentValues(false);
+        pieChart.setDrawEntryLabels(false);
+        pieChart.getDescription().setEnabled(false);
+
+        pieChart.setData(pieData);
+        pieChart.invalidate();
+    }
+    private ArrayList<PieEntry> pieData() {
+        ArrayList<PieEntry> list = new ArrayList<>();
+        list.add(new PieEntry(90,"Correct"));
+        list.add(new PieEntry(10,"Incorrect"));
+        return list;
     }
 
 //    private void init() {
