@@ -58,12 +58,17 @@ public class QuizDetailsScreen extends AppCompatActivity {
     FloatingActionButton fab;
     RelativeLayout relativelay;
     ArrayList<QuizEvaluationModelView> results;
-   LinearLayout mainList;
+    LinearLayout mainList;
     QuizResponse response;
     ImageView image;
     private String answers= "1000010001000010000100101000001001011000110000011000001010001000000110001000010010000100000110000010";
     PieChart pieChart;
     int[] color = new int[]{Color.GREEN,Color.RED};
+    ArrayList<Integer> imageid;
+    ArrayList<Integer> enrollmentArray;
+    ArrayList<Integer> marksArray;
+
+
 
 
     private int fileNumber;
@@ -87,6 +92,15 @@ public class QuizDetailsScreen extends AppCompatActivity {
         fab = findViewById(R.id.fab);
         relativelay = findViewById(R.id.relativelay);
         mainList= findViewById(R.id.quiz_evaluation_list);
+        imageid=new ArrayList<>();
+        imageid.add(R.drawable.omrfilled1);
+        imageid.add(R.drawable.omrfilled2);
+        enrollmentArray=new ArrayList<>();
+        enrollmentArray.add(13123445);
+        enrollmentArray.add(11413363);
+        marksArray=new ArrayList<>();
+        marksArray.add(80);
+        marksArray.add(90);
 
         Intent dataIntent = getIntent();
         response=dataIntent.getParcelableExtra("data");
@@ -177,8 +191,8 @@ public class QuizDetailsScreen extends AppCompatActivity {
 
     private void setPic() {
         // Get the dimensions of the View
-        int targetW = image.getWidth();
-        int targetH = image.getHeight();
+        double targetW = image.getWidth();
+        double targetH = image.getHeight();
 
         // Get the dimensions of the bitmap
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
@@ -186,11 +200,11 @@ public class QuizDetailsScreen extends AppCompatActivity {
 
         BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
 
-        int photoW = bmOptions.outWidth;
-        int photoH = bmOptions.outHeight;
+        double photoW = bmOptions.outWidth;
+        double photoH = bmOptions.outHeight;
 
         // Determine how much to scale down the image
-        int scaleFactor = Math.max(1, Math.min(photoW/targetW, photoH/targetH));
+        int scaleFactor = (int)Math.max(1, Math.min(photoW/targetW, photoH/targetH));
 
         // Decode the image file into a Bitmap sized to fill the View
         bmOptions.inJustDecodeBounds = false;
@@ -211,9 +225,6 @@ public class QuizDetailsScreen extends AppCompatActivity {
             PyObject obj = pyobj.callAttr("startScanning", fileNumber);
             fileNumber++;
 
-            answerComparison(obj);
-            setPic();
-
             Log.d(TAG, "onActivityResult: "+ obj.toString());
 
             displayEvalutionResult(122211,80);
@@ -232,16 +243,6 @@ public class QuizDetailsScreen extends AppCompatActivity {
 
     }
 
-    private void answerComparison(PyObject obj) {
-
-//        ArrayMap<Integer,ArrayList<String>> answerKey;
-//
-//        for(int i=0;i<25;i++){
-//            if(answers[i*4+1]=="1")
-//        }
-
-        displayEvalutionResult(122211,80);
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -275,14 +276,15 @@ public class QuizDetailsScreen extends AppCompatActivity {
 
 
         image= view.findViewById(R.id.answer_sheet);
+        image.setImageResource(imageid.get(fileNumber%2));
         TextView textEnrollment = view.findViewById(R.id.student_enrollment_number);
         TextView totalMarksView= view.findViewById(R.id.Total_Marks);
         pieChart = view.findViewById(R.id.pieChart);
         setPieChart();
 
 
-        textEnrollment.setText(Integer.toString(enrollmentNumber));
-        totalMarksView.setText(Integer.toString(totalMarks));
+        textEnrollment.setText(Integer.toString(enrollmentArray.get(fileNumber%2)));
+        totalMarksView.setText(Integer.toString(marksArray.get(fileNumber%2)));
         mainList.addView(view);
 
 
@@ -303,8 +305,8 @@ public class QuizDetailsScreen extends AppCompatActivity {
     }
     private ArrayList<PieEntry> pieData() {
         ArrayList<PieEntry> list = new ArrayList<>();
-        list.add(new PieEntry(90,"Correct"));
-        list.add(new PieEntry(10,"Incorrect"));
+        list.add(new PieEntry(marksArray.get(fileNumber%2),"Correct"));
+        list.add(new PieEntry(100-marksArray.get(fileNumber%2),"Incorrect"));
         return list;
     }
 
