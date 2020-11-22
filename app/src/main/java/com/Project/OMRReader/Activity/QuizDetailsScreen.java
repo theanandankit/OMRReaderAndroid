@@ -10,12 +10,15 @@ import androidx.viewpager.widget.ViewPager;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.util.ArrayMap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +60,8 @@ public class QuizDetailsScreen extends AppCompatActivity {
     ArrayList<QuizEvaluationModelView> results;
    LinearLayout mainList;
     QuizResponse response;
+    ImageView image;
+    private String answers= "1000010001000010000100101000001001011000110000011000001010001000000110001000010010000100000110000010";
     PieChart pieChart;
     int[] color = new int[]{Color.GREEN,Color.RED};
 
@@ -65,7 +70,7 @@ public class QuizDetailsScreen extends AppCompatActivity {
 
 
     private static final int CAMERA_REQUESTCODE = 1;
-    private static final String TAG="QuizDetailsScreen";
+    private static final String TAG="QuizDetailsSrceen";
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -86,8 +91,11 @@ public class QuizDetailsScreen extends AppCompatActivity {
         Intent dataIntent = getIntent();
         response=dataIntent.getParcelableExtra("data");
         results=new ArrayList<QuizEvaluationModelView>();
+        response=dataIntent.getExtras().getParcelable("data");
 
         Log.v( "Response ", response.toString()+"HELLO ");
+        Log.d(TAG, "onResponse: "+ response.getAnswer());
+        Log.d(TAG, "onCreate: "+ answers.length());
 
         fileNumber=0;
 
@@ -167,6 +175,32 @@ public class QuizDetailsScreen extends AppCompatActivity {
         return image;
     }
 
+    private void setPic() {
+        // Get the dimensions of the View
+        int targetW = image.getWidth();
+        int targetH = image.getHeight();
+
+        // Get the dimensions of the bitmap
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+
+        BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
+
+        int photoW = bmOptions.outWidth;
+        int photoH = bmOptions.outHeight;
+
+        // Determine how much to scale down the image
+        int scaleFactor = Math.max(1, Math.min(photoW/targetW, photoH/targetH));
+
+        // Decode the image file into a Bitmap sized to fill the View
+        bmOptions.inJustDecodeBounds = false;
+        bmOptions.inSampleSize = scaleFactor;
+        bmOptions.inPurgeable = true;
+
+        Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
+        image.setImageBitmap(bitmap);
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -177,10 +211,10 @@ public class QuizDetailsScreen extends AppCompatActivity {
             PyObject obj = pyobj.callAttr("startScanning", fileNumber);
             fileNumber++;
 
+            answerComparison(obj);
+            setPic();
 
             Log.d(TAG, "onActivityResult: "+ obj.toString());
-
-            displayEvalutionResult(122211,80);
 
 
             File fdelete = new File(currentPhotoPath);
@@ -194,6 +228,17 @@ public class QuizDetailsScreen extends AppCompatActivity {
 
         }
 
+    }
+
+    private void answerComparison(PyObject obj) {
+
+//        ArrayMap<Integer,ArrayList<String>> answerKey;
+//
+//        for(int i=0;i<25;i++){
+//            if(answers[i*4+1]=="1")
+//        }
+
+        displayEvalutionResult(122211,80);
     }
 
     @Override
@@ -227,7 +272,7 @@ public class QuizDetailsScreen extends AppCompatActivity {
         View view= inflater.inflate(R.layout.quiz_evaluation_display,  mainList ,false);
 
 
-        ImageView image= view.findViewById(R.id.answer_sheet);
+        image= view.findViewById(R.id.answer_sheet);
         TextView textEnrollment = view.findViewById(R.id.student_enrollment_number);
         TextView totalMarksView= view.findViewById(R.id.Total_Marks);
         pieChart = view.findViewById(R.id.pieChart);
